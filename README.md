@@ -26,7 +26,7 @@
 | Column             | Type       | Options     |
 | ------------------ | ---------- | ----------- |
 | postcode           | string     | null: false |
-| prefecture_id      | integer    | null: false |
+| delivery_area_id   | integer    | null: false |
 | city               | string     | null: false |
 | block              | string     | null: false |
 | building           | string     |             |
@@ -59,7 +59,7 @@
 
 | Column             | Type    | Options     |
 | ------------------ | ------- | ----------- |
-| product_name       | string  | null: false |
+| name               | string  | null: false |
 | text               | text    | null: false |
 | category_id        | integer | null: false |
 | status_id          | integer | null: false |
