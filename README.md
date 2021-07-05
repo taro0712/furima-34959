@@ -17,7 +17,7 @@
 ### Association
 
 - has_many :products
-- has_many :purchasehistory
+- has_many :purchasehistories
 
 
 
