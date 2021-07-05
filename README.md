@@ -17,11 +17,11 @@
 ### Association
 
 - has_many :products
-- has_one :purchasehistory
+- has_many :purchasehistory
 
 
 
-## address テーブル
+## addresses テーブル
 
 | Column             | Type       | Options     |
 | ------------------ | ---------- | ----------- |
@@ -39,7 +39,7 @@
 
 
 
-## purchasehistory テーブル
+## purchasehistories テーブル
 
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
