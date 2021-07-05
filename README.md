@@ -16,10 +16,8 @@
 
 ### Association
 
-- has_many :addresses
 - has_many :products
-- has_many :comments
-- has_many :purchasehistory
+- has_one :purchasehistory
 
 
 
@@ -33,13 +31,11 @@
 | block              | string     | null: false |
 | building           | string     |             |
 | phone_number       | string     | null: false |
-| user               | references | null: false, foreign_key: true |
+| purchasehistory    | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :user
-- belongs_to :product
-- has_one :purchasehistory
+- belongs_to :purchasehistory
 
 
 
@@ -48,13 +44,12 @@
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
 | user               | references | null: false, foreign_key: true |
-| address            | references | null: false, foreign_key: true |
 | product            | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- belongs_to :address
+- has_one :address
 - belongs_to :product
 
 
@@ -77,25 +72,7 @@
 ### Association
 
 - belongs_to :user
-- has_one :address
 - has_one :purchasehistory
-- has_many :comments
-
-
-
-## comments テーブル
-
-| Column             | Type   | Options     |
-| ------------------ | ------ | ----------- |
-| text               | text   | null: false |
-| user               | references | null: false, foreign_key: true |
-
-### Association
-
-- belongs_to :user
-- belongs_to :product
-
-
 
 
 
