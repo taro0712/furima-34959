@@ -19,7 +19,7 @@ with_options presence: true do
   validates :birthday
 end
 
-  # has_many :products
+   has_many :products
   # has_many :purchasehistories
   
 end
