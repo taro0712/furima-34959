@@ -12,12 +12,12 @@ RSpec.describe Product, type: :model do
      end
 
       it '販売価格が300円〜9,999,999円以内であれば登録できる' do
-        @product.price = '300'
+        @product.price = 300
         expect(@product).to be_valid
       end
 
       it '販売価格が半角数字であれば登録できる' do
-        @product.price = '400'
+        @product.price = 400
         expect(@product).to be_valid
       end
     end
@@ -41,38 +41,38 @@ RSpec.describe Product, type: :model do
         expect(@product.errors.full_messages).to include("Text can't be blank")
       end
 
-      it 'カテゴリーが未入力(---)だと登録できない' do
-        @product.category_id = '---'
+      it 'カテゴリーが未選択だと登録できない' do
+        @product.category_id = 1
         @product.valid?
         expect(@product.errors.full_messages).to include("Category can't be blank")
       end
 
-      it '商品の状態が未入力(---)だと登録できない' do
-        @product.status_id = '---'
+      it '商品の状態が未選択だと登録できない' do
+        @product.status_id = 1
         @product.valid?
         expect(@product.errors.full_messages).to include("Status can't be blank")
       end
 
-      it '配送料の負担が未入力(---)だと登録できない' do
-        @product.shopping_charge_id = '---'
+      it '配送料の負担が未選択だと登録できない' do
+        @product.shopping_charge_id = 1
         @product.valid?
         expect(@product.errors.full_messages).to include("Shopping charge can't be blank")
       end
 
-      it '配送料の負担が未入力(---)だと登録できない' do
-        @product.shopping_charge_id = '---'
+      it '配送料の負担が未選択だと登録できない' do
+        @product.shopping_charge_id = 1
         @product.valid?
         expect(@product.errors.full_messages).to include("Shopping charge can't be blank")
       end
 
-      it '発送元の地域が未入力(---)だと登録できない' do
-        @product.delivery_area_id = '---'
+      it '発送元の地域が未選択だと登録できない' do
+        @product.delivery_area_id = 1
         @product.valid?
         expect(@product.errors.full_messages).to include("Delivery area can't be blank")
       end
 
-      it '発送までの日数が未入力(---)だと登録できない' do
-        @product.delivery_day_id = '---'
+      it '発送までの日数が未選択だと登録できない' do
+        @product.delivery_day_id = 1
         @product.valid?
         expect(@product.errors.full_messages).to include("Delivery day can't be blank")
       end
@@ -89,17 +89,23 @@ RSpec.describe Product, type: :model do
         expect(@product.errors.full_messages).to include("Price is out of setting range")
       end
 
+      it '販売価格が半角数字以外だと登録できない' do
+        @product.price = 'abcdefgh'
+        @product.valid?
+        expect(@product.errors.full_messages).to include("Price is out of setting range")
+      end
+
       it '販売価格が300円未満だと登録できない' do
-        @product.price = '299'
+        @product.price = 299
         @product.valid?
         expect(@product.errors.full_messages).to include("Price is out of setting range")
       end
 
       it '販売価格が10,000,000円以上だと登録できない' do
-        @product.price = '10000000'
+        @product.price = 10000000
         @product.valid?
         expect(@product.errors.full_messages).to include("Price is out of setting range")
       end
-     end
+    end
   end
 end

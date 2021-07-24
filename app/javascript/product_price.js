@@ -8,10 +8,10 @@ const inputValue = priceInput.value;
 const taxValue = Math.floor( inputValue * 0.1 )
 
 taxInput.innerHTML = taxValue
-console.log(taxInput);
+
 
 profitInput.innerHTML = Math.floor(inputValue - taxValue )
-console.log(profitInput);
+
 
 })
 });
