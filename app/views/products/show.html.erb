@@ -1,5 +1,5 @@
 <%= render "shared/header" %>
-
+<%# 以下コメントは、商品購入機能実装時に参考するため残しています。必要に応じて商品購入実装時に削除します%>
 <%# 商品の概要 %>
 <div class="item-show">
   <div class="item-box">
@@ -33,6 +33,7 @@
     <p class="or-text">or</p>
     <%= link_to "削除", "#", method: :delete, class:"item-destroy" %>
   <%# else @product.purchasehistory == nil && current_user.id != @product.user_id %>
+ 
   <% else %>
     <%# 商品が売れていない場合はこちらを表示しましょう %>
     <%= link_to "購入画面に進む", "#" ,class:"item-red-btn"%>
@@ -41,7 +42,7 @@
 <% end %>
 
     <div class="item-explain-box">
-      <span><%= "商品説明" %></span>
+      <span><%= @product.text %></span>
     </div>
     <table class="detail-table">
       <tbody>
