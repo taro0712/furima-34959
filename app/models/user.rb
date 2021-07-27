@@ -20,6 +20,6 @@ with_options presence: true do
 end
 
    has_many :products
-  # has_many :purchasehistories
+   has_many :purchasehistories
   
 end
