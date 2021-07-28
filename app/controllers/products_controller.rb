@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_product, except: [:index, :new, :create]
-  before_action :contributor_confirmation, only: [:edit, :update]
+  before_action :contributor_confirmation, only: [:edit, :update, :destroy]
 
 def index
   @products = Product.all.order("created_at DESC")
@@ -15,6 +15,14 @@ def show
 end
 
 def edit
+end
+
+def destroy
+  if @product.destroy
+    redirect_to root_path
+  else
+    redirect_to root_path
+  end
 end
 
 
