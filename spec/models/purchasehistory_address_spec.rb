@@ -4,20 +4,20 @@ RSpec.describe PurchasehistoryAddress, type: :model do
   describe '商品購入の保存' do
     before do
       user = FactoryBot.create(:user)
-      product = FactoryBot.create(:product)    
-      @purchasehistory_address = FactoryBot.build( :purchasehistory_address, user_id: user.id, product_id: product.id )
+      product = FactoryBot.create(:product)
+      @purchasehistory_address = FactoryBot.build(:purchasehistory_address, user_id: user.id, product_id: product.id)
       sleep 0.1
     end
 
     context '内容に問題がない場合' do
-     it '全ての情報があれば保存できる' do
-       expect(@purchasehistory_address).to be_valid
-     end
+      it '全ての情報があれば保存できる' do
+        expect(@purchasehistory_address).to be_valid
+      end
 
-     it '建物名は空でも保存できる' do
-      @purchasehistory_address.building = ''
-      expect(@purchasehistory_address).to be_valid
-     end
+      it '建物名は空でも保存できる' do
+        @purchasehistory_address.building = ''
+        expect(@purchasehistory_address).to be_valid
+      end
     end
 
     context '内容に問題がある場合' do
@@ -30,7 +30,7 @@ RSpec.describe PurchasehistoryAddress, type: :model do
       it '郵便番号は「-」がないと、保存できない' do
         @purchasehistory_address.postcode = '1234567'
         @purchasehistory_address.valid?
-        expect(@purchasehistory_address.errors.full_messages).to include("Postcode is invalid. Enter it as follows (e.g. 123-4567)")
+        expect(@purchasehistory_address.errors.full_messages).to include('Postcode is invalid. Enter it as follows (e.g. 123-4567)')
       end
 
       it '都道府県が空では、保存できない' do
@@ -60,21 +60,20 @@ RSpec.describe PurchasehistoryAddress, type: :model do
       it '電話番号は11桁より短いと、保存できない' do
         @purchasehistory_address.phone_number = '090123456'
         @purchasehistory_address.valid?
-        expect(@purchasehistory_address.errors.full_messages).to include("Phone number is too short")
+        expect(@purchasehistory_address.errors.full_messages).to include('Phone number is too short')
       end
 
       it '電話番号は半角数値以外だと、保存できない' do
         @purchasehistory_address.phone_number = '０９０１２３４５６７８'
         @purchasehistory_address.valid?
-        expect(@purchasehistory_address.errors.full_messages).to include("Phone number is invalid. Input only number")
+        expect(@purchasehistory_address.errors.full_messages).to include('Phone number is invalid. Input only number')
       end
 
-
-     end
-
-  
-
-
-  
+      it 'tokenが空だと、保存できない' do
+        @purchasehistory_address.token = nil
+        @purchasehistory_address.valid?
+        expect(@purchasehistory_address.errors.full_messages).to include("Token can't be blank")
+      end
+    end
   end
 end
