@@ -1,14 +1,9 @@
 class PurchasehistoriesController < ApplicationController
   before_action :set_product
-  before_action :authenticate_user!, except: [:index, :new]
-  before_action :login_confirmation
+  before_action :authenticate_user!
   before_action :contributor_confirmation, only: [:index]
 
   def index
-    @purchasehistory_address = PurchasehistoryAddress.new
-  end
-
-  def new
     @purchasehistory_address = PurchasehistoryAddress.new
   end
 
@@ -44,15 +39,7 @@ class PurchasehistoriesController < ApplicationController
     )
   end
 
-  def login_confirmation
-    redirect_to new_user_session_path unless user_signed_in?
-  end
-
   def contributor_confirmation
-    if current_user == @product.user
-      redirect_to root_path
-    elsif user_signed_in? && !@product.purchasehistory.nil?
-      redirect_to root_path
-    end
+    redirect_to root_path if current_user == @product.user || @product.purchasehistory.present?
   end
 end

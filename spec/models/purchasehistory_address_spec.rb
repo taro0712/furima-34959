@@ -34,7 +34,7 @@ RSpec.describe PurchasehistoryAddress, type: :model do
       end
 
       it '都道府県が空では、保存できない' do
-        @purchasehistory_address.delivery_area_id = '1'
+        @purchasehistory_address.delivery_area_id = 1
         @purchasehistory_address.valid?
         expect(@purchasehistory_address.errors.full_messages).to include("Delivery area can't be blank")
       end
@@ -57,10 +57,16 @@ RSpec.describe PurchasehistoryAddress, type: :model do
         expect(@purchasehistory_address.errors.full_messages).to include("Phone number can't be blank")
       end
 
-      it '電話番号は11桁より短いと、保存できない' do
+      it '電話番号は9桁以下だと、保存できない' do
         @purchasehistory_address.phone_number = '090123456'
         @purchasehistory_address.valid?
         expect(@purchasehistory_address.errors.full_messages).to include('Phone number is too short')
+      end
+
+      it '電話番号は12桁以上だと、保存できない' do
+        @purchasehistory_address.phone_number = '090123456789'
+        @purchasehistory_address.valid?
+        expect(@purchasehistory_address.errors.full_messages).to include('Phone number is too long')
       end
 
       it '電話番号は半角数値以外だと、保存できない' do
@@ -73,6 +79,18 @@ RSpec.describe PurchasehistoryAddress, type: :model do
         @purchasehistory_address.token = nil
         @purchasehistory_address.valid?
         expect(@purchasehistory_address.errors.full_messages).to include("Token can't be blank")
+      end
+
+      it '商品が空だと、保存できない' do
+        @purchasehistory_address.product_id = nil
+        @purchasehistory_address.valid?
+        expect(@purchasehistory_address.errors.full_messages).to include("Product can't be blank")
+      end
+
+      it '購入者が空だと、保存できない' do
+        @purchasehistory_address.user_id = nil
+        @purchasehistory_address.valid?
+        expect(@purchasehistory_address.errors.full_messages).to include("User can't be blank")
       end
     end
   end
