@@ -1,7 +1,7 @@
 class PurchasehistoriesController < ApplicationController
   before_action :set_product
   before_action :authenticate_user!
-  before_action :contributor_confirmation, only: [:index]
+  before_action :contributor_confirmation, only: [:index, :create]
 
   def index
     @purchasehistory_address = PurchasehistoryAddress.new
