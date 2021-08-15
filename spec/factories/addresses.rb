@@ -1,4 +1,4 @@
 FactoryBot.define do
-  factory :purchasehistory do
+  factory :address do
   end
 end
